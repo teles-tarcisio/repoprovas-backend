@@ -18,14 +18,6 @@ export async function verifyToken(token: string) {
     return verifiedData;
   } catch (error) {
     console.error(error);
-    /*
-    separar erros:
-    1 - se expirado, sessionServices.setExpired -> sessionRepository.(...),
-    mexe na tabela (), throw
-    
-    2 - se invalido, só throw
-    */
-
     throw errorUtils.jwtError("Invalid or expired token");
   }
 }

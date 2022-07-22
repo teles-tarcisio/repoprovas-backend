@@ -14,18 +14,8 @@ model User {
   id       Int       @id @default(autoincrement())
   email    String    @unique
   password String
-  session  Session[]
-
+  
   @@map("users")
 }
 
-model Session {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  user         User     @relation(fields: [userId], references: [id])
-  createdAt    DateTime
-  expiredToken Boolean  @default(false)
 
-  @@unique([userId, id], name: "userSessions")
-  @@map("sessions")
-}
