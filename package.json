@@ -2,12 +2,12 @@
   "name": "projeto20-repoprovas",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "dev": "npx nodemon src/app.ts",
+    "dev": "npx nodemon src/server.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "@prisma/client": "^4.1.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",

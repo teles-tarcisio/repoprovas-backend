@@ -33,3 +33,7 @@ export function unauthorizedError(message?: string): AppError {
 export function wrongSchemaError(message?: string): AppError {
   return { type: "wrong_schema", message };
 }
+
+export function jwtError(message?: string): AppError {
+  return{ type: "unauthorized", message };
+}

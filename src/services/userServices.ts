@@ -1,4 +1,7 @@
-import { userRepository } from "../repositories/index.js";
+import {
+  userRepository,
+  sessionRepository,
+} from "../repositories/index.js";
 import { NewUser } from "../repositories/userRepository.js";
 import {
   encryptPassword,
@@ -50,6 +53,8 @@ async function login(userData: NewUser) {
   delete existingUser.password;
 
   const newToken = await createToken(existingUser);
+  await sessionRepository.insert(existingUser.id);
+
   return newToken;
 }
 

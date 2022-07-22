@@ -20,11 +20,11 @@ model User {
 }
 
 model Session {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime
-  loggedOut Boolean  @default(false)
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id])
+  createdAt    DateTime
+  expiredToken Boolean  @default(false)
 
   @@unique([userId, id], name: "userSessions")
   @@map("sessions")
