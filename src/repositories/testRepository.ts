@@ -2,9 +2,17 @@ import { prisma } from "../database/dbConfig.js";
 import { Test } from "@prisma/client";
 
 
-export type NewTest = Omit<Test, "id">;
+export type CreateNewTest = Omit<Test, "id">;
 
-async function insert(newTest: NewTest) {
+export interface NewTestSchema {
+  name: string;
+  pdfUrl: string;
+  categoryId: number;
+  disciplineId: number;
+  teacherId: number;
+};
+
+async function insert(newTest: CreateNewTest) {
   await prisma.test.create({
     data: newTest,
   });

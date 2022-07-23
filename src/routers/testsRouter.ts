@@ -10,7 +10,7 @@ const testsRouter = Router();
 testsRouter.use(ensureAuthentication);
 
 testsRouter.post("/tests/new",
-  validateSchema(newTestSchema), //<< parei aqui
+  validateSchema(newTestSchema),
   testsController.create,
 );
 
