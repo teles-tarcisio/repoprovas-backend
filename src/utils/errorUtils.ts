@@ -1,4 +1,4 @@
-type AppErrorTypes = "conflict" | "not_found" | "unauthorized" | "wrong_schema";
+type AppErrorTypes = "conflict" | "not_found" | "unauthorized" | "wrong_schema" | "unprocessable";
 
 export interface AppError {
   type: AppErrorTypes;
@@ -14,6 +14,7 @@ export function errorTypeToStatusCode(type: AppErrorTypes) {
   if (type === "not_found") return 404;
   if (type === "unauthorized") return 401;
   if (type === "wrong_schema") return 422;
+  if (type === "unprocessable") return 422;
   
   return 400;
 }
@@ -36,4 +37,8 @@ export function wrongSchemaError(message?: string): AppError {
 
 export function jwtError(message?: string): AppError {
   return{ type: "unauthorized", message };
+}
+
+export function unprocessableError(message?: string): AppError {
+  return { type: "unprocessable", message };
 }

@@ -14,5 +14,9 @@ testsRouter.post("/tests/new",
   testsController.create,
 );
 
+testsRouter.get("/tests",
+  testsController.get,
+);
+
 
 export default testsRouter;
