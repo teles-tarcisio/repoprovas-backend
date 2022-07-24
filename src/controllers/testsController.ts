@@ -4,6 +4,7 @@ import { testServices } from "../services/index.js";
 import { NewTestSchema } from "../repositories/testRepository.js";
 import { errorUtils } from "../utils/index.js";
 
+
 export async function create(req: Request, res: Response) {
   const newTest: NewTestSchema = res.locals.payload.validSchema;
   await testServices.create(newTest);
@@ -12,19 +13,21 @@ export async function create(req: Request, res: Response) {
 }
 
 export async function get(req: Request, res: Response) {
-  let foundTests: Test[];
-
   const groupTestsBy = req.query?.groupBy;
-  if (!groupTestsBy) {
+
+  if ((!groupTestsBy) || ((groupTestsBy !== "teachers") && (groupTestsBy !== "disciplines"))) { 
     throw errorUtils.unprocessableError("group tests by 'disciplines' or 'teachers'");
-  } else {
+  } else {    
+    if (groupTestsBy === "disciplines") {
+
+      const testsByDisciplines = await testServices.getByDisciplines();
+
+      return res.status(200).send(testsByDisciplines);
+    }
+
     if (groupTestsBy === "teachers") {
+      
       return res.status(501).send('grouping by TEACHERS');
     }
-    if (groupTestsBy === "disciplines") {
-      return res.status(501).send('grouping by DISCIPLINES');
-    }
-
-  }
-  
+  }  
 }

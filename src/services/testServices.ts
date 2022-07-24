@@ -1,6 +1,7 @@
 import {
   categoryServices,
   teacherDisciplineServices,
+  disciplineServices,
  } from "./index.js";
 import { testRepository } from "../repositories/index.js";
 import {
@@ -24,9 +25,16 @@ async function create(newTest: NewTestSchema) {
   await testRepository.insert(createTest);
 }
 
+async function getByDisciplines() {
+  const testsByDisciplines = await disciplineServices.getDisciplinesByTerms();
+
+  return testsByDisciplines;
+}
+
 
 const testServices = {
   create,
+  getByDisciplines,
 };
 
 export default testServices;
