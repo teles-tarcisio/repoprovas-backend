@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Test } from "@prisma/client";
 import { testServices } from "../services/index.js";
 import { NewTestSchema } from "../repositories/testRepository.js";
 import { errorUtils } from "../utils/index.js";
@@ -26,8 +25,10 @@ export async function get(req: Request, res: Response) {
     }
 
     if (groupTestsBy === "teachers") {
+
+      const testsByTeachers = await testServices.getByTeachers();
       
-      return res.status(501).send('grouping by TEACHERS');
+      return res.status(200).send(testsByTeachers);
     }
   }  
 }

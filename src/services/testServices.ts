@@ -2,6 +2,7 @@ import {
   categoryServices,
   teacherDisciplineServices,
   disciplineServices,
+  teacherServices,
  } from "./index.js";
 import { testRepository } from "../repositories/index.js";
 import {
@@ -31,10 +32,17 @@ async function getByDisciplines() {
   return testsByDisciplines;
 }
 
+async function getByTeachers() {
+  const testsByTeachers = await teacherServices.getCategoriesByTeacher();
+
+  return testsByTeachers;
+}
+
 
 const testServices = {
   create,
   getByDisciplines,
+  getByTeachers,
 };
 
 export default testServices;
