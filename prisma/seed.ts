@@ -154,12 +154,7 @@ async function main() {
 
     await __truncateTeachersDisciplines();
     await __insertTeachersDisciplines();
-    
 
-    /*
-    adicionar categorias/disciplinas/professores/etc!!
-    */
-    console.log("CALLED_PRISMA_DB_SEED <<<<");
 }
 
 main().catch(err => {
