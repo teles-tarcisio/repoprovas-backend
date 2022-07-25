@@ -21,7 +21,7 @@ export async function get(req: Request, res: Response) {
 
       const testsByDisciplines = await testServices.getByDisciplines();
 
-      return res.status(200).send(testsByDisciplines);
+      return res.status(200).send({ tests: testsByDisciplines });
     }
 
     if (groupTestsBy === "teachers") {

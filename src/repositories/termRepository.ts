@@ -3,18 +3,19 @@ import { prisma } from "../database/dbConfig.js";
 
 async function getTermsDisciplines() {
   //term -> disc -> teachDisc -> tests
+  
   const disciplinesTests = await prisma.term.findMany({
     select: {
       id: true,
       number: true,
-      discipline: {
+      disciplines: {
         select: {
           id: true,
           name: true,
-          teacherDiscipline: {
+          teacherDisciplines: {
             include: {
               teacher: true,
-              test: {
+              tests: {
                 include: {
                   category: true,
                 }
@@ -25,7 +26,7 @@ async function getTermsDisciplines() {
       }
     }
   });
-
+    
   return disciplinesTests;
 }
 

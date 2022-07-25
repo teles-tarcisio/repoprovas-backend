@@ -14,8 +14,18 @@ async function categoryIdExists(categoryId: number) {
   return category;
 }
 
+async function getAll() {
+  const categories = await categoryRepository.get();
+  if (categories.length < 1) {
+    throw errorUtils.notFoundError("there are no categories registered");
+  }
+
+  return categories;
+}
+
 const categoryServices = {
   categoryIdExists,
+  getAll,
 };
 
 export default categoryServices;

@@ -11,9 +11,14 @@ async function findById(categoryId: number) {
   return foundCategory;
 }
 
+async function get() {
+  return (await prisma.category.findMany({}));
+}
+
 
 const categoryRepository = {
   findById,
+  get,
 };
 
 export default categoryRepository;

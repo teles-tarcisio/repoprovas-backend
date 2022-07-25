@@ -7,10 +7,10 @@ async function getTeachersCategories() {
     select: {
       id: true,
       name: true,
-      teacherDiscipline: {
+      teacherDisciplines: {
         include: {
           discipline: true,
-          test: {
+          tests: {
             include: {
               category: true,
             }
