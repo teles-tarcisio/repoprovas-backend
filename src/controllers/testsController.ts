@@ -28,7 +28,7 @@ export async function get(req: Request, res: Response) {
 
       const testsByTeachers = await testServices.getByTeachers();
       
-      return res.status(200).send(testsByTeachers);
+      return res.status(200).send({ tests: testsByTeachers });
     }
   }  
 }
